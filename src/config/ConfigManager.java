@@ -9,7 +9,6 @@ import java.util.Set;
 /**
  * ConfigManager is responsible for loading and providing access
  * to the configuration settings from a properties file.
- *
  * It provides default values for all supported keys and handles invalid input gracefully.
  */
 public class ConfigManager {

@@ -42,7 +42,7 @@ public class ReportBuilder {
                                       String outputPath) {
         JSONObject report = new JSONObject();
 
-        // ✅ COUNT_LEVELS
+        //  COUNT_LEVELS
         if (levelAnalyzer != null) {
             JSONObject countLevels = new JSONObject();
             for (var entry : levelAnalyzer.getCounts().entrySet()) {
@@ -51,7 +51,7 @@ public class ReportBuilder {
             report.put("COUNT_LEVELS", countLevels);
         }
 
-        // ✅ FIND_COMMON_SOURCE
+        //  FIND_COMMON_SOURCE
         if (sourceAnalyzer != null) {
             JSONObject commonSource = new JSONObject();
             var sourceCounts = sourceAnalyzer.getSourceCounts();
@@ -69,7 +69,7 @@ public class ReportBuilder {
             report.put("FIND_COMMON_SOURCE", commonSource);
         }
 
-        // ✅ DETECT_ANOMALIES לפי הדרישות
+        //  DETECT_ANOMALIES
         if (anomalies != null && !anomalies.isEmpty()) {
             JSONObject allAnomalies = new JSONObject();
 
@@ -89,11 +89,9 @@ public class ReportBuilder {
 
             report.put("DETECT_ANOMALIES", anomaliesArray);
         } else {
-            // אם אין אנומליות – השדה יישמר כ-[]
             report.put("DETECT_ANOMALIES", new JSONArray());
         }
 
-        // כתיבה לקובץ JSON
         try (FileWriter file = new FileWriter(outputPath)) {
             file.write(report.toString(4)); // with indentation
         } catch (IOException e) {

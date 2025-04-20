@@ -53,10 +53,8 @@ public class Controller {
             return;
         }
 
-        // יצירת האנלייזרים לפי config
         List<LogAnalyzer> analyzers = AnalyzerFactory.createAnalyzers(config);
 
-        // הפניה לאובייקטים לפי סוג
         LevelCounter levelAnalyzer = null;
         SourceCounter sourceAnalyzer = null;
         AnomalyDetector anomalyAnalyzer = null;
@@ -70,7 +68,6 @@ public class Controller {
                 anomalyAnalyzer = (AnomalyDetector) analyzer;
         }
 
-        // Thread pool
         ExecutorService executor = Executors.newFixedThreadPool(config.getThreadPoolSize());
         for (File logFile : logFiles) {
             executor.submit(new LogFileProcessor(logFile, analyzers));
@@ -83,7 +80,6 @@ public class Controller {
             e.printStackTrace();
         }
 
-        // הדפסות לפי מה שקיים
         if (levelAnalyzer != null) {
             System.out.println("Log level counts:");
             for (Map.Entry<String, Integer> entry : levelAnalyzer.getCounts().entrySet()) {
@@ -115,7 +111,6 @@ public class Controller {
             }
         }
 
-        // שמירת הדו"ח ל־JSON
         ReportBuilder.saveFullReport(
                 levelAnalyzer,
                 sourceAnalyzer,
