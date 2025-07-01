@@ -1,0 +1,25 @@
+{
+    "COUNT_LEVELS": {
+        "warning": 2745,
+        "error": 2643,
+        "info": 2702
+    },
+    "DETECT_ANOMALIES": [{
+        "logfile_3.log": {
+            "anomalies": ["2025-04-22 06:13:25"],
+            "anomalies_count": 1
+        },
+        "logfile_1.log": {
+            "anomalies": ["2025-04-16 16:53:39"],
+            "anomalies_count": 1
+        }
+    }],
+    "FIND_COMMON_SOURCE": {
+        "least_common_source_count": 1105,
+        "sources": "[Server1, Server2, Database, LoadBalancer, Server3, Server4, Cache]",
+        "source_counts": "[1113, 1105, 1136, 1196, 1211, 1147, 1182]",
+        "most_common_source": "Server3",
+        "least_common_source": "Server2",
+        "most_common_source_count": 1211
+    }
+}
