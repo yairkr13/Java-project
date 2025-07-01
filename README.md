@@ -1,33 +1,57 @@
-# Log Analyzer
+# 🧠 Log Analyzer – Java Multithreaded Log Processing System
 
-## Authors
-- Omer Shimoni
-- Yair Krothamer
+A modular and extensible Java application for analyzing distributed system log files using multiple design patterns and multithreading.
 
-  Email:  
-  - yairkr@edu.jmc.ac.il
-  - omershi@edu.jmc.ac.il
+------------------------
 
-## Design Patterns Used
+## 📌 Project Description
 
-1. **Factory Pattern**  
-   - **Used In:** `AnalyzerFactory`  
-   - **Why:** Responsible for creating analyzers based on configuration  
-   - **Problem Solved:** Allows flexible extension of new analyzers without changing main code
+This Java-based application processes and analyzes log files in parallel using a configurable thread pool and JSON-based reports. It supports multiple analysis types such as:
 
-2. **Strategy Pattern (via Interface)**  
-   - **Used In:** `LogAnalyzer` interface and its implementations  
-   - **Why:** Enables different types of analysis with a common interface  
-   - **Problem Solved:** Supports easy swapping or adding of analyzers
+- **Counting log levels**
+- **Identifying most/least common log sources**
+- **Detecting anomalies based on frequency and timeframe**
 
-3. **Controller Pattern**  
-   - **Used In:** `Controller` class  
-   - **Why:** Coordinates between config, processing, and reporting  
-   - **Problem Solved:** Keeps `Main` class clean and separates orchestration
+The design emphasizes clean architecture, flexibility, and scalability for future extensions.
 
-## Extensibility
+------------------------
 
-To extend the application:
-- Add a new class implementing `LogAnalyzer`
-- Update `AnalyzerFactory` to return the new analyzer based on config
-- For new output types (e.g., text, email), create a new report writer (e.g., `TextReportBuilder`)
+## 🛠️ Technologies & Concepts
+
+- Java 23+  
+- Multithreading (Thread Pool Executor)  
+- JSON (input/output)  
+- Configurable `.properties` file  
+- Input validation and error handling  
+- Modular object-oriented design  
+
+------------------------
+
+## 🧩 Design Patterns Used
+
+| Pattern              | Usage                                                                 |
+|----------------------|------------------------------------------------------------------------|
+| **Factory**          | `AnalyzerFactory` – creates analyzer objects dynamically               |
+| **Strategy**         | `LogAnalyzer` interface and implementations – pluggable analysis types |
+| **Controller**       | `Controller` class – coordinates file reading, processing, and output  |
+
+------------------------
+
+## ⚙️ Configuration (config.properties)
+
+properties:
+log.directory=/path/to/logs
+thread.pool.size=4
+output.file=log_report.json
+log.analysis=COUNT_LEVELS,FIND_COMMON_SOURCE,DETECT_ANOMALIES
+log.analysis.anomalies.levels=ERROR,WARNING
+log.analysis.anomalies.window=60
+log.analysis.anomalies.threshold=5
+
+------------------------
+
+## 👨‍💻 Author
+
+**Yair Krothamer**  
+📧 yairk1998@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/yair-krothamer-8b0448230)  
